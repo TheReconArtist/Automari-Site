@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import {
   Phone,
@@ -24,11 +24,12 @@ import {
   MapPin,
   Target,
   Send,
+  Bot,
+  Minimize2
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import Image from "next/image"
 
 const aiAgents = [
   {
@@ -247,10 +248,238 @@ const surveyQuestions = [
   },
 ]
 
+// Chatbot Component
+function Chatbot() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      sender: "AI",
+      text: "Hi! I'm the Automari AI assistant. I can help you learn about our services, pricing, or answer any questions about business automation. How can I help you today?",
+      timestamp: new Date()
+    }
+  ])
+  const [inputMessage, setInputMessage] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const messagesEndRef = useRef(null)
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages])
+
+  const sendMessage = async () => {
+    if (!inputMessage.trim() || isLoading) return
+
+    const userMessage = {
+      id: Date.now(),
+      sender: "You",
+      text: inputMessage.trim(),
+      timestamp: new Date()
+    }
+
+    setMessages(prev => [...prev, userMessage])
+    setInputMessage("")
+    setIsLoading(true)
+
+    try {
+      const response = await fetch("https://gpt4-backend-aqnc.onrender.com/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: inputMessage.trim() }),
+      })
+
+      const data = await response.json()
+
+      const aiMessage = {
+        id: Date.now() + 1,
+        sender: "AI",
+        text: data.reply || "I apologize, but I'm having trouble generating a response right now. Please try again or contact us directly at 561-201-4365.",
+        timestamp: new Date()
+      }
+
+      setMessages(prev => [...prev, aiMessage])
+    } catch (error) {
+      console.error("Chatbot error:", error)
+      const errorMessage = {
+        id: Date.now() + 1,
+        sender: "AI",
+        text: "I'm sorry, I'm having trouble connecting right now. Please try again later or call us directly at 561-201-4365 for immediate assistance.",
+        timestamp: new Date()
+      }
+      setMessages(prev => [...prev, errorMessage])
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault()
+      sendMessage()
+    }
+  }
+
+  return (
+    <>
+      {/* Floating Chat Button */}
+      <motion.div
+        className="fixed bottom-6 right-6 z-50"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 2, type: "spring", stiffness: 200 }}
+      >
+        <motion.button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-16 h-16 bg-gradient-to-r from-red-600 to-blue-600 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center text-white relative overflow-hidden"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <AnimatePresence mode="wait">
+            {isOpen ? (
+              <motion.div
+                key="close"
+                initial={{ rotate: -180, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 180, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <X className="h-6 w-6" />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="bot"
+                initial={{ rotate: 180, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -180, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Bot className="h-6 w-6" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+          
+          {/* Pulse animation */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-blue-600 animate-ping opacity-20" />
+        </motion.button>
+      </motion.div>
+
+      {/* Chat Window */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="fixed bottom-24 right-6 w-96 h-[32rem] bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl border border-slate-600/50 z-50 flex flex-col overflow-hidden"
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 50, scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          >
+            {/* Chat Header */}
+            <div className="bg-gradient-to-r from-red-600/20 to-blue-600/20 backdrop-blur-sm p-4 border-b border-slate-600/50">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-blue-500 rounded-full flex items-center justify-center">
+                    <Bot className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white">Automari Assistant</h3>
+                    <p className="text-xs text-slate-400">Online • Powered by AI</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-slate-400 hover:text-white transition-colors p-1"
+                >
+                  <Minimize2 className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Messages */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              {messages.map((message) => (
+                <motion.div
+                  key={message.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`flex ${message.sender === "You" ? "justify-end" : "justify-start"}`}
+                >
+                  <div
+                    className={`max-w-[80%] p-3 rounded-2xl ${
+                      message.sender === "You"
+                        ? "bg-gradient-to-r from-red-600 to-blue-600 text-white rounded-br-md"
+                        : "bg-slate-700/50 text-slate-100 rounded-bl-md"
+                    }`}
+                  >
+                    <p className="text-sm leading-relaxed">{message.text}</p>
+                    <p className="text-xs opacity-70 mt-1">
+                      {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+              
+              {isLoading && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex justify-start"
+                >
+                  <div className="bg-slate-700/50 text-slate-100 rounded-2xl rounded-bl-md p-3">
+                    <div className="flex items-center space-x-2">
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" />
+                        <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }} />
+                        <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
+                      </div>
+                      <span className="text-xs text-slate-400">AI is typing...</span>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Input */}
+            <div className="p-4 border-t border-slate-600/50 bg-slate-800/50">
+              <div className="flex items-center space-x-2">
+                <input
+                  type="text"
+                  value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder="Ask about our AI services..."
+                  className="flex-1 bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-red-500/50 focus:ring-1 focus:ring-red-500/20 transition-all"
+                  disabled={isLoading}
+                />
+                <button
+                  onClick={sendMessage}
+                  disabled={!inputMessage.trim() || isLoading}
+                  className="bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl p-2 text-white transition-all"
+                >
+                  <Send className="h-4 w-4" />
+                </button>
+              </div>
+              <p className="text-xs text-slate-500 mt-2 text-center">
+                Press Enter to send • Powered by GPT-4
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  )
+}
+
 export default function AutomariWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [expandedCard, setExpandedCard] = useState<number | null>(null)
-  const [surveyData, setSurveyData] = useState<Record<string, any>>({})
+  const [expandedCard, setExpandedCard] = useState(null)
+  const [surveyData, setSurveyData] = useState({})
   const [surveyStep, setSurveyStep] = useState(0)
   const [showSurvey, setShowSurvey] = useState(false)
   const [surveySubmitted, setSurveySubmitted] = useState(false)
@@ -267,13 +496,12 @@ export default function AutomariWebsite() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [isMenuOpen])
 
-  const handleSurveyChange = (questionId: string, value: any) => {
+  const handleSurveyChange = (questionId, value) => {
     setSurveyData((prev) => ({ ...prev, [questionId]: value }))
   }
 
   const handleSurveySubmit = () => {
     setSurveySubmitted(true)
-    // Here you would typically send the data to your backend
     console.log("Survey Data:", surveyData)
   }
 
@@ -300,8 +528,8 @@ export default function AutomariWebsite() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <motion.div className="flex items-center space-x-3" whileHover={{ scale: 1.05 }}>
-              <div className="relative w-10 h-10">
-                <Image src="/automari-logo.png" alt="Automari Logo" fill className="object-contain" />
+              <div className="relative w-10 h-10 bg-gradient-to-r from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
+                <Bot className="h-6 w-6 text-white" />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-red-400 via-slate-200 to-blue-400 bg-clip-text text-transparent">
                 Automari
@@ -385,7 +613,7 @@ export default function AutomariWebsite() {
               whileHover={{ scale: 1.05 }}
             >
               <Sparkles className="h-4 w-4 text-red-400" />
-              <span className="text-sm font-medium">On Track To Become America's Most Trusted AI Agency</span>
+              <span className="text-sm font-medium">On Track To Becoming America's Most Trusted AI Agency</span>
             </motion.div>
 
             <div className="flex justify-center mb-8">
@@ -396,12 +624,9 @@ export default function AutomariWebsite() {
                 transition={{ duration: 1, delay: 0.5 }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
               >
-                <Image
-                  src="/automari-logo.png"
-                  alt="Automari 3D Logo"
-                  fill
-                  className="object-contain drop-shadow-2xl"
-                />
+                <div className="w-full h-full bg-gradient-to-r from-red-500 to-blue-500 rounded-3xl flex items-center justify-center">
+                  <Bot className="h-20 w-20 text-white" />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-blue-500/20 rounded-3xl blur-xl animate-pulse" />
               </motion.div>
             </div>
@@ -691,7 +916,7 @@ export default function AutomariWebsite() {
                                 const current = surveyData[currentQuestion.id] || []
                                 const updated = e.target.checked
                                   ? [...current, option]
-                                  : current.filter((item: string) => item !== option)
+                                  : current.filter((item) => item !== option)
                                 handleSurveyChange(currentQuestion.id, updated)
                               }}
                               className="w-4 h-4 text-red-500 bg-slate-700 border-slate-600 rounded focus:ring-red-500"
@@ -797,7 +1022,7 @@ export default function AutomariWebsite() {
               </motion.a>
 
               <motion.a
-                href="mailto:contact automari@gmail.com"
+                href="mailto:contactautomari@gmail.com"
                 className="flex items-center justify-center space-x-3 p-6 bg-gradient-to-r from-blue-600/20 to-blue-800/20 backdrop-blur-sm border border-blue-500/30 rounded-2xl hover:border-blue-400/50 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -805,7 +1030,7 @@ export default function AutomariWebsite() {
                 <Mail className="h-6 w-6 text-blue-400" />
                 <div className="text-left">
                   <div className="text-sm text-slate-400">Email us</div>
-                  <div className="text-lg font-semibold text-white">contact automari@gmail.com</div>
+                  <div className="text-lg font-semibold text-white">contactautomari@gmail.com</div>
                 </div>
               </motion.a>
             </div>
@@ -833,8 +1058,8 @@ export default function AutomariWebsite() {
                 className="flex items-center justify-center md:justify-start space-x-3 mb-6"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="relative w-12 h-12">
-                  <Image src="/automari-logo.png" alt="Automari Logo" fill className="object-contain" />
+                <div className="relative w-12 h-12 bg-gradient-to-r from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
+                  <Bot className="h-6 w-6 text-white" />
                 </div>
                 <span className="text-3xl font-bold bg-gradient-to-r from-red-400 via-slate-200 to-blue-400 bg-clip-text text-transparent">
                   Automari
@@ -864,7 +1089,7 @@ export default function AutomariWebsite() {
                   <span className="text-lg">561-201-4365</span>
                 </motion.a>
                 <motion.a
-                  href="mailto:contact@automari.ai"
+                  href="mailto:contactautomari@gmail.com"
                   className="flex items-center justify-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors"
                   whileHover={{ scale: 1.05 }}
                 >
@@ -912,7 +1137,10 @@ export default function AutomariWebsite() {
             </div>
           </div>
         </div>
-   </footer>
+      </footer>
+
+      {/* Integrated Chatbot */}
+      <Chatbot />
     </div>
   )
 }
