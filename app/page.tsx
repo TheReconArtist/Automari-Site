@@ -319,12 +319,12 @@ export default function AutomariWebsite() {
                 <span>561-201-4365</span>
               </motion.a>
               <motion.a
-                href="mailto:contact@automari.ai"
+                href="mailto:contact automari@gmail.com"
                 className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors"
                 whileHover={{ scale: 1.05 }}
               >
                 <Mail className="h-4 w-4" />
-                <span>contact@automari.ai</span>
+                <span>contact automari@gmail.com</span>
               </motion.a>
             </div>
 
@@ -359,12 +359,12 @@ export default function AutomariWebsite() {
                   <span>561-201-4365</span>
                 </motion.a>
                 <motion.a
-                  href="mailto:contact@automari.ai"
+                  href="mailto:contact automari@gmail.com"
                   className="flex items-center space-x-2 text-blue-400"
                   whileTap={{ scale: 0.95 }}
                 >
                   <Mail className="h-4 w-4" />
-                  <span>contact@automari.ai</span>
+                  <span>contact automari@gmail.com</span>
                 </motion.a>
               </div>
             </motion.div>
@@ -385,7 +385,7 @@ export default function AutomariWebsite() {
               whileHover={{ scale: 1.05 }}
             >
               <Sparkles className="h-4 w-4 text-red-400" />
-              <span className="text-sm font-medium">America's Most Trusted AI Automation Agency</span>
+              <span className="text-sm font-medium">On Track To Become America's Most Trusted AI Automation Agency</span>
             </motion.div>
 
             <div className="flex justify-center mb-8">
