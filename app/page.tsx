@@ -912,8 +912,7 @@ export default function AutomariWebsite() {
             </div>
           </div>
         </div>
-      </footer>
+   </footer>
     </div>
   )
-}t-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6"
-                  >
+}
