@@ -385,7 +385,7 @@ export default function AutomariWebsite() {
               whileHover={{ scale: 1.05 }}
             >
               <Sparkles className="h-4 w-4 text-red-400" />
-              <span className="text-sm font-medium">On Track To Become America's Most Trusted AI Automation Agency</span>
+              <span className="text-sm font-medium">On Track To Become America's Most Trusted AI Agency</span>
             </motion.div>
 
             <div className="flex justify-center mb-8">
@@ -797,7 +797,7 @@ export default function AutomariWebsite() {
               </motion.a>
 
               <motion.a
-                href="mailto:contact@automari.ai"
+                href="mailto:contact automari@gmail.com"
                 className="flex items-center justify-center space-x-3 p-6 bg-gradient-to-r from-blue-600/20 to-blue-800/20 backdrop-blur-sm border border-blue-500/30 rounded-2xl hover:border-blue-400/50 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -805,7 +805,7 @@ export default function AutomariWebsite() {
                 <Mail className="h-6 w-6 text-blue-400" />
                 <div className="text-left">
                   <div className="text-sm text-slate-400">Email us</div>
-                  <div className="text-lg font-semibold text-white">contact@automari.ai</div>
+                  <div className="text-lg font-semibold text-white">contact automari@gmail.com</div>
                 </div>
               </motion.a>
             </div>
@@ -869,7 +869,7 @@ export default function AutomariWebsite() {
                   whileHover={{ scale: 1.05 }}
                 >
                   <Mail className="h-5 w-5" />
-                  <span className="text-lg">contact@automari.ai</span>
+                  <span className="text-lg">contact automari@gmail.com</span>
                 </motion.a>
                 <div className="flex items-center justify-center space-x-2 text-slate-400">
                   <MapPin className="h-5 w-5" />
