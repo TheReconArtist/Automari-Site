@@ -25,7 +25,8 @@ import {
   Target,
   Send,
   Bot,
-  Minimize2
+  Minimize2,
+  Palette
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -83,7 +84,7 @@ const aiAgents = [
     color: "from-red-700 to-red-900",
   },
   {
-    id: 5,
+    id: 6,
     title: "HR & Employee Onboarding",
     icon: Users,
     description: "Streamlined onboarding process with document management, training schedules, and progress tracking.",
@@ -91,7 +92,7 @@ const aiAgents = [
     color: "from-blue-700 to-blue-900",
   },
   {
-    id: 6,
+    id: 7,
     title: "Inventory & Supply Chain",
     icon: Package,
     description: "Real-time inventory tracking, automated reordering, supplier management, and demand forecasting.",
@@ -99,7 +100,7 @@ const aiAgents = [
     color: "from-slate-700 to-slate-900",
   },
   {
-    id: 7,
+    id: 8,
     title: "Marketing & Lead Generation",
     icon: TrendingUp,
     description: "Automated lead scoring, nurturing campaigns, conversion optimization, and ROI tracking.",
@@ -107,7 +108,7 @@ const aiAgents = [
     color: "from-red-800 to-red-950",
   },
   {
-    id: 8,
+    id: 9,
     title: "Data Analytics & Reporting",
     icon: BarChart3,
     description: "Advanced data visualization, predictive analytics, automated reporting, and business intelligence.",
@@ -115,7 +116,7 @@ const aiAgents = [
     color: "from-blue-800 to-blue-950",
   },
   {
-    id: 9,
+    id: 10,
     title: "Social Media Management",
     icon: Share2,
     description:
@@ -124,27 +125,13 @@ const aiAgents = [
     color: "from-slate-800 to-slate-950",
   },
   {
-    id: 10,
+    id: 11,
     title: "Cybersecurity & Risk Mitigation",
     icon: Shield,
     description:
       "Proactive threat detection, automated security responses, compliance monitoring, and risk assessment.",
     features: ["Threat Detection", "Automated Response", "Compliance Monitoring", "Risk Assessment"],
     color: "from-red-900 to-red-950",
-  },
-  {
-    id: 11,
-    title: "Enterprise Web Design & Brand Development",
-    icon: Palette,
-    description:
-      "End-to-end site creation that forges a powerful brand presence and growth engine. *Advanced service—requires larger capital allocation.",
-    features: [
-      "Custom UI/UX Architecture – pixel‑perfect layouts, responsive across every device",
-      "Brand Identity Suite – logos, color system, typography & voice crafted for conversion", 
-      "Scalable CMS & API Integrations – lightning‑fast front‑end (Next.js) plus e‑commerce, CRM, and AI chat‑bot embeds",
-      "SEO & CRO Framework – schema, core‑web‑vitals tuning, and funnel tracking baked in from day one"
-    ],
-    color: "from-purple-700 to-purple-900",
   },
 ]
 
@@ -575,12 +562,12 @@ export default function AutomariWebsite() {
                 <span>561-201-4365</span>
               </motion.a>
               <motion.a
-                href="mailto:contact automari@gmail.com"
+                href="mailto:contactautomari@gmail.com"
                 className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors"
                 whileHover={{ scale: 1.05 }}
               >
                 <Mail className="h-4 w-4" />
-                <span>contact automari@gmail.com</span>
+                <span>contactautomari@gmail.com</span>
               </motion.a>
             </div>
 
@@ -615,12 +602,12 @@ export default function AutomariWebsite() {
                   <span>561-201-4365</span>
                 </motion.a>
                 <motion.a
-                  href="mailto:contact automari@gmail.com"
+                  href="mailto:contactautomari@gmail.com"
                   className="flex items-center space-x-2 text-blue-400"
                   whileTap={{ scale: 0.95 }}
                 >
                   <Mail className="h-4 w-4" />
-                  <span>contact automari@gmail.com</span>
+                  <span>contactautomari@gmail.com</span>
                 </motion.a>
               </div>
             </motion.div>
@@ -1122,7 +1109,7 @@ export default function AutomariWebsite() {
                   whileHover={{ scale: 1.05 }}
                 >
                   <Mail className="h-5 w-5" />
-                  <span className="text-lg">contact automari@gmail.com</span>
+                  <span className="text-lg">contactautomari@gmail.com</span>
                 </motion.a>
                 <div className="flex items-center justify-center space-x-2 text-slate-400">
                   <MapPin className="h-5 w-5" />
