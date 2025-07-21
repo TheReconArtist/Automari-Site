@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import Image from "next/image"
 import {
   Phone,
   Mail,
@@ -543,8 +544,15 @@ export default function AutomariWebsite() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <motion.div className="flex items-center space-x-3" whileHover={{ scale: 1.05 }}>
-              <div className="relative w-10 h-10 bg-gradient-to-r from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
-                <Bot className="h-6 w-6 text-white" />
+              <div className="relative w-10 h-10">
+                <Image
+                  src="/automari-logo.png"
+                  alt="Automari Logo"
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                  priority
+                />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-red-400 via-slate-200 to-blue-400 bg-clip-text text-transparent">
                 Automari
@@ -639,10 +647,15 @@ export default function AutomariWebsite() {
                 transition={{ duration: 1, delay: 0.5 }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
               >
-                <div className="w-full h-full bg-gradient-to-r from-red-500 to-blue-500 rounded-3xl flex items-center justify-center">
-                  <Bot className="h-20 w-20 text-white" />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-blue-500/20 rounded-3xl blur-xl animate-pulse" />
+                <Image
+                  src="/automari-logo.png"
+                  alt="Automari AI Logo"
+                  width={160}
+                  height={160}
+                  className="object-contain"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-3xl blur-xl animate-pulse" />
               </motion.div>
             </div>
 
@@ -1073,8 +1086,14 @@ export default function AutomariWebsite() {
                 className="flex items-center justify-center md:justify-start space-x-3 mb-6"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="relative w-12 h-12 bg-gradient-to-r from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
-                  <Bot className="h-6 w-6 text-white" />
+                <div className="relative w-12 h-12">
+                  <Image
+                    src="/automari-logo.png"
+                    alt="Automari Logo"
+                    width={48}
+                    height={48}
+                    className="object-contain"
+                  />
                 </div>
                 <span className="text-3xl font-bold bg-gradient-to-r from-red-400 via-slate-200 to-blue-400 bg-clip-text text-transparent">
                   Automari
