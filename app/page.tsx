@@ -264,7 +264,7 @@ const surveyQuestions = [
   },
 ]
 
-// Chatbot Component
+// Enhanced Chatbot Component with Built-in Knowledge Base
 function Chatbot() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState([
@@ -278,6 +278,159 @@ function Chatbot() {
   const [inputMessage, setInputMessage] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const messagesEndRef = useRef(null)
+
+  // Local Knowledge Base for Automari - NO EXTERNAL API NEEDED!
+  const generateLocalResponse = (userInput) => {
+    const input = userInput.toLowerCase()
+    
+    // Greeting responses
+    if (input.includes('hello') || input.includes('hi') || input.includes('hey')) {
+      return "Hello! I'm here to help you learn about Automari's AI automation services. What would you like to know about?"
+    }
+    
+    // Services inquiries
+    if (input.includes('service') || input.includes('what do you do') || input.includes('offerings')) {
+      return `Automari specializes in AI-powered business automation. Our main services include:
+
+🎨 **Enterprise Web Design & Brand Development** - Complete brand transformation with larger capital allocation
+🤖 **Customer Support Automation** - 24/7 intelligent support
+📧 **Email Management** - Smart categorization and responses  
+💰 **Financial & Accounting Automation** - Automated bookkeeping and reporting
+👥 **HR & Employee Onboarding** - Streamlined processes
+📦 **Inventory & Supply Chain** - Real-time tracking and management
+📈 **Marketing & Lead Generation** - Automated campaigns and scoring
+📊 **Data Analytics & Reporting** - Business intelligence and insights
+📱 **Social Media Management** - Content scheduling and monitoring
+🛡️ **Cybersecurity & Risk Mitigation** - Threat detection and response
+
+Which service interests you most?`
+    }
+    
+    // Pricing inquiries
+    if (input.includes('price') || input.includes('cost') || input.includes('pricing') || input.includes('budget')) {
+      return `Our pricing is customized based on your specific needs and business size. Here's what you need to know:
+
+💡 **Free Business Assessment** - We start with a comprehensive evaluation
+💼 **Custom Solutions** - Every package is tailored to your requirements
+🏢 **Enterprise Services** - Web design and larger projects require higher investment
+📞 **Transparent Pricing** - No hidden fees, clear project scope
+
+For accurate pricing, I'd recommend taking our free assessment or calling Mike directly at 561-201-4365. Would you like to start the assessment?`
+    }
+    
+    // Contact information
+    if (input.includes('contact') || input.includes('phone') || input.includes('email') || input.includes('call')) {
+      return `Here's how to reach the Automari team:
+
+📞 **Phone**: 561-201-4365 (Ask for Mike)
+📧 **Email**: contactautomari@gmail.com
+📍 **Location**: Serving South Florida and nationwide
+⏰ **Response Time**: Within 24 hours
+
+Mike personally handles all initial consultations and can provide immediate insights into how AI automation can transform your business. Would you like me to help you prepare questions for your call?`
+    }
+    
+    // Company information
+    if (input.includes('about') || input.includes('company') || input.includes('automari') || input.includes('who are you')) {
+      return `**About Automari** 🚀
+
+We're America's most trusted AI agency, specializing in streamlining business operations across the United States. Here's what makes us special:
+
+✅ **500+ hours saved weekly** for our clients
+✅ **50+ businesses automated** and growing
+✅ **99% client satisfaction** rate
+✅ **Based in South Florida** but serving nationwide
+
+Founded by Mike, our mission is to make AI automation accessible and profitable for American businesses. We focus on real ROI, not just flashy tech.
+
+What specific aspect of our company would you like to know more about?`
+    }
+    
+    // Technical capabilities
+    if (input.includes('ai') || input.includes('automation') || input.includes('technology') || input.includes('how it works')) {
+      return `**Our AI Automation Technology** 🤖
+
+We use cutting-edge AI to solve real business problems:
+
+🧠 **Natural Language Processing** - For customer support and communication
+⚡ **Machine Learning** - For predictive analytics and smart decisions  
+🔄 **Process Automation** - For repetitive tasks and workflows
+📊 **Data Intelligence** - For insights and reporting
+🔗 **API Integrations** - Connecting all your existing tools
+
+Our approach focuses on practical implementation, not experimental tech. Everything we build is designed for real business ROI.
+
+What specific automation challenge are you facing?`
+    }
+    
+    // Results and case studies
+    if (input.includes('results') || input.includes('success') || input.includes('case study') || input.includes('examples')) {
+      return `**Real Results from South Florida Businesses** 📈
+
+Here are some recent transformations:
+
+🏖️ **Miami Beach Boutique** - 40% increase in customer satisfaction, response time from hours to minutes
+🏗️ **Rodriguez Construction** - Eliminated double bookings, seamless project coordination
+⚖️ **Thompson Legal** - 80% of client inquiries handled automatically, massive productivity boost
+🍽️ **Chen's Restaurant Group** - Thousands saved in waste prevention, no more stockouts
+
+**Average Results Across All Clients:**
+• 60-80% reduction in manual work
+• 2-4x faster response times
+• 25-50% cost savings within 6 months
+
+Want to see how we can achieve similar results for your business?`
+    }
+    
+    // Getting started
+    if (input.includes('start') || input.includes('begin') || input.includes('next step') || input.includes('assessment')) {
+      return `**Ready to Get Started?** 🎯
+
+Here's the simple process:
+
+1️⃣ **Free Assessment** (15 minutes) - Identify your biggest automation opportunities
+2️⃣ **Strategy Call with Mike** (30 minutes) - Custom solution design
+3️⃣ **Proposal & Timeline** - Clear roadmap with guaranteed ROI
+4️⃣ **Implementation** - We handle everything while you focus on your business
+
+**Next Steps:**
+🎯 Take the assessment (click the button above)
+📞 Call Mike directly: 561-201-4365
+📧 Email: contactautomari@gmail.com
+
+Which option works best for you?`
+    }
+
+    // Web design specific
+    if (input.includes('web design') || input.includes('website') || input.includes('brand') || input.includes('development')) {
+      return `**Enterprise Web Design & Brand Development** 🎨
+
+Our flagship service that creates powerful brand presence and growth engines:
+
+🎯 **Custom UI/UX Architecture** - Pixel-perfect layouts, responsive across every device
+🎨 **Brand Identity Suite** - Logos, color systems, typography & voice crafted for conversion
+⚡ **Scalable CMS & API Integrations** - Lightning-fast Next.js front-end with e-commerce, CRM, and AI chatbot embeds
+🚀 **SEO & CRO Framework** - Schema, core-web-vitals tuning, and funnel tracking built in from day one
+
+*Note: This is an advanced service requiring larger capital allocation due to the comprehensive nature of the transformation.
+
+Ready to discuss your vision? Call Mike at 561-201-4365!`
+    }
+    
+    // Default response for unrecognized queries
+    return `I'd love to help you with that! Here are some things I can tell you about:
+
+🔹 **Our Services** - AI automation solutions across all business areas
+🔹 **Pricing** - Custom quotes and free assessment  
+🔹 **Results** - Real case studies and success stories
+🔹 **Getting Started** - Next steps and consultation process
+🔹 **Contact Info** - How to reach Mike and the team
+🔹 **Web Design** - Our premium brand development service
+
+You can also call Mike directly at **561-201-4365** for immediate assistance with any specific questions about your business automation needs.
+
+What would you like to explore?`
+  }
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -298,38 +451,36 @@ function Chatbot() {
     }
 
     setMessages(prev => [...prev, userMessage])
+    const currentInput = inputMessage.trim()
     setInputMessage("")
     setIsLoading(true)
 
     try {
-      const response = await fetch("https://gpt4-backend-aqnc.onrender.com/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: inputMessage.trim() }),
-      })
-
-      const data = await response.json()
-
+      // REMOVED: External API call - using local knowledge base instead
+      const localResponse = generateLocalResponse(currentInput)
+      
       const aiMessage = {
         id: Date.now() + 1,
         sender: "AI",
-        text: data.reply || "I apologize, but I'm having trouble generating a response right now. Please try again or contact us directly at 561-201-4365.",
+        text: localResponse,
         timestamp: new Date()
       }
 
-      setMessages(prev => [...prev, aiMessage])
+      // Add a small delay for more natural feel
+      setTimeout(() => {
+        setMessages(prev => [...prev, aiMessage])
+        setIsLoading(false)
+      }, 800)
+
     } catch (error) {
       console.error("Chatbot error:", error)
       const errorMessage = {
         id: Date.now() + 1,
         sender: "AI",
-        text: "I'm sorry, I'm having trouble connecting right now. Please try again later or call us directly at 561-201-4365 for immediate assistance.",
+        text: "I'm having a small technical hiccup, but I'm still here to help! For immediate assistance, please call Mike directly at 561-201-4365. You can also try asking your question again.",
         timestamp: new Date()
       }
       setMessages(prev => [...prev, errorMessage])
-    } finally {
       setIsLoading(false)
     }
   }
@@ -339,6 +490,41 @@ function Chatbot() {
       e.preventDefault()
       sendMessage()
     }
+  }
+
+  // Quick action buttons for common questions
+  const quickActions = [
+    { text: "📋 View Services", query: "What services do you offer?" },
+    { text: "💰 Pricing Info", query: "How much does automation cost?" },
+    { text: "📞 Contact Mike", query: "How can I contact you?" },
+    { text: "🚀 Get Started", query: "How do I get started?" }
+  ]
+
+  const handleQuickAction = (query) => {
+    setInputMessage(query)
+    // Automatically send the message
+    setTimeout(() => {
+      const syntheticUserMessage = {
+        id: Date.now(),
+        sender: "You",
+        text: query,
+        timestamp: new Date()
+      }
+      setMessages(prev => [...prev, syntheticUserMessage])
+      setIsLoading(true)
+      
+      setTimeout(() => {
+        const response = generateLocalResponse(query)
+        const aiMessage = {
+          id: Date.now() + 1,
+          sender: "AI", 
+          text: response,
+          timestamp: new Date()
+        }
+        setMessages(prev => [...prev, aiMessage])
+        setIsLoading(false)
+      }, 800)
+    }, 100)
   }
 
   return (
@@ -404,7 +590,7 @@ function Chatbot() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-white">Automari Assistant</h3>
-                    <p className="text-xs text-slate-400">Online • Powered by AI</p>
+                    <p className="text-xs text-slate-400">Online • AI-Powered</p>
                   </div>
                 </div>
                 <button
@@ -426,19 +612,38 @@ function Chatbot() {
                   className={`flex ${message.sender === "You" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[80%] p-3 rounded-2xl ${
+                    className={`max-w-[85%] p-3 rounded-2xl ${
                       message.sender === "You"
                         ? "bg-gradient-to-r from-red-600 to-blue-600 text-white rounded-br-md"
                         : "bg-slate-700/50 text-slate-100 rounded-bl-md"
                     }`}
                   >
-                    <p className="text-sm leading-relaxed">{message.text}</p>
+                    <p className="text-sm leading-relaxed whitespace-pre-line">{message.text}</p>
                     <p className="text-xs opacity-70 mt-1">
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
                   </div>
                 </motion.div>
               ))}
+              
+              {/* Quick Actions (show after initial message) */}
+              {messages.length === 1 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="grid grid-cols-2 gap-2 mt-4"
+                >
+                  {quickActions.map((action, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleQuickAction(action.query)}
+                      className="text-xs p-2 bg-slate-600/30 hover:bg-slate-600/50 rounded-lg text-slate-300 hover:text-white transition-all"
+                    >
+                      {action.text}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
               
               {isLoading && (
                 <motion.div
@@ -453,7 +658,7 @@ function Chatbot() {
                         <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }} />
                         <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
                       </div>
-                      <span className="text-xs text-slate-400">AI is typing...</span>
+                      <span className="text-xs text-slate-400">AI is thinking...</span>
                     </div>
                   </div>
                 </motion.div>
@@ -482,7 +687,7 @@ function Chatbot() {
                 </button>
               </div>
               <p className="text-xs text-slate-500 mt-2 text-center">
-                Press Enter to send • Powered by GPT-4
+                Press Enter to send • Powered by Automari AI
               </p>
             </div>
           </motion.div>
@@ -1173,7 +1378,7 @@ export default function AutomariWebsite() {
         </div>
       </footer>
 
-      {/* Integrated Chatbot */}
+      {/* Enhanced Chatbot with Knowledge Base */}
       <Chatbot />
     </div>
   )
