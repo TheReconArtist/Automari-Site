@@ -264,14 +264,14 @@ const surveyQuestions = [
   },
 ]
 
-// Enhanced Chatbot Component with Built-in Knowledge Base
-function Chatbot() {
+// AUTOMARI Pro - Elite AI Automation Consultant Chatbot
+function AutomariProChatbot() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState([
     {
       id: 1,
       sender: "AI",
-      text: "Hi! I'm the Automari AI assistant. I can help you learn about our services, pricing, or answer any questions about business automation. How can I help you today?",
+      text: "👋 **AUTOMARI Pro** here – your AI‑automation strategist.\n\nI diagnose business pain points and design high‑impact automation solutions. What's your biggest operational bottleneck right now?",
       timestamp: new Date()
     }
   ])
@@ -279,157 +279,230 @@ function Chatbot() {
   const [isLoading, setIsLoading] = useState(false)
   const messagesEndRef = useRef(null)
 
-  // Local Knowledge Base for Automari - NO EXTERNAL API NEEDED!
-  const generateLocalResponse = (userInput) => {
+  // AUTOMARI Pro Knowledge Base - Professional Consultant Responses
+  const automariProResponse = (userInput) => {
     const input = userInput.toLowerCase()
     
-    // Greeting responses
-    if (input.includes('hello') || input.includes('hi') || input.includes('hey')) {
-      return "Hello! I'm here to help you learn about Automari's AI automation services. What would you like to know about?"
-    }
-    
-    // Services inquiries
-    if (input.includes('service') || input.includes('what do you do') || input.includes('offerings')) {
-      return `Automari specializes in AI-powered business automation. Our main services include:
+    // Business Pain: Customer Support Overwhelm
+    if (input.includes('customer support') || input.includes('customer service') || input.includes('tickets') || input.includes('response time')) {
+      return `**🎯 Key Pain You Stated**
+• Drowning in customer support tickets, slow response times crushing satisfaction
 
-🎨 **Enterprise Web Design & Brand Development** - Complete brand transformation with larger capital allocation
-🤖 **Customer Support Automation** - 24/7 intelligent support
-📧 **Email Management** - Smart categorization and responses  
-💰 **Financial & Accounting Automation** - Automated bookkeeping and reporting
-👥 **HR & Employee Onboarding** - Streamlined processes
-📦 **Inventory & Supply Chain** - Real-time tracking and management
-📈 **Marketing & Lead Generation** - Automated campaigns and scoring
-📊 **Data Analytics & Reporting** - Business intelligence and insights
-📱 **Social Media Management** - Content scheduling and monitoring
-🛡️ **Cybersecurity & Risk Mitigation** - Threat detection and response
+**⚡ 3‑Line Solution Sketch**
+• **AI Support Agent**: 24/7 intelligent routing + sentiment analysis + auto‑responses
+• **Result**: 80% ticket auto‑resolution, 5‑minute avg response (vs hours)
+• **Proof**: Thompson Legal cut response time 90%, boosted client satisfaction 40%
 
-Which service interests you most?`
-    }
-    
-    // Pricing inquiries
-    if (input.includes('price') || input.includes('cost') || input.includes('pricing') || input.includes('budget')) {
-      return `Our pricing is customized based on your specific needs and business size. Here's what you need to know:
-
-💡 **Free Business Assessment** - We start with a comprehensive evaluation
-💼 **Custom Solutions** - Every package is tailored to your requirements
-🏢 **Enterprise Services** - Web design and larger projects require higher investment
-📞 **Transparent Pricing** - No hidden fees, clear project scope
-
-For accurate pricing, I'd recommend taking our free assessment or calling Mike directly at 561-201-4365. Would you like to start the assessment?`
-    }
-    
-    // Contact information
-    if (input.includes('contact') || input.includes('phone') || input.includes('email') || input.includes('call')) {
-      return `Here's how to reach the Automari team:
-
-📞 **Phone**: 561-201-4365 (Ask for Mike)
-📧 **Email**: contactautomari@gmail.com
-📍 **Location**: Serving South Florida and nationwide
-⏰ **Response Time**: Within 24 hours
-
-Mike personally handles all initial consultations and can provide immediate insights into how AI automation can transform your business. Would you like me to help you prepare questions for your call?`
-    }
-    
-    // Company information
-    if (input.includes('about') || input.includes('company') || input.includes('automari') || input.includes('who are you')) {
-      return `**About Automari** 🚀
-
-We're America's most trusted AI agency, specializing in streamlining business operations across the United States. Here's what makes us special:
-
-✅ **500+ hours saved weekly** for our clients
-✅ **50+ businesses automated** and growing
-✅ **99% client satisfaction** rate
-✅ **Based in South Florida** but serving nationwide
-
-Founded by Mike, our mission is to make AI automation accessible and profitable for American businesses. We focus on real ROI, not just flashy tech.
-
-What specific aspect of our company would you like to know more about?`
-    }
-    
-    // Technical capabilities
-    if (input.includes('ai') || input.includes('automation') || input.includes('technology') || input.includes('how it works')) {
-      return `**Our AI Automation Technology** 🤖
-
-We use cutting-edge AI to solve real business problems:
-
-🧠 **Natural Language Processing** - For customer support and communication
-⚡ **Machine Learning** - For predictive analytics and smart decisions  
-🔄 **Process Automation** - For repetitive tasks and workflows
-📊 **Data Intelligence** - For insights and reporting
-🔗 **API Integrations** - Connecting all your existing tools
-
-Our approach focuses on practical implementation, not experimental tech. Everything we build is designed for real business ROI.
-
-What specific automation challenge are you facing?`
-    }
-    
-    // Results and case studies
-    if (input.includes('results') || input.includes('success') || input.includes('case study') || input.includes('examples')) {
-      return `**Real Results from South Florida Businesses** 📈
-
-Here are some recent transformations:
-
-🏖️ **Miami Beach Boutique** - 40% increase in customer satisfaction, response time from hours to minutes
-🏗️ **Rodriguez Construction** - Eliminated double bookings, seamless project coordination
-⚖️ **Thompson Legal** - 80% of client inquiries handled automatically, massive productivity boost
-🍽️ **Chen's Restaurant Group** - Thousands saved in waste prevention, no more stockouts
-
-**Average Results Across All Clients:**
-• 60-80% reduction in manual work
-• 2-4x faster response times
-• 25-50% cost savings within 6 months
-
-Want to see how we can achieve similar results for your business?`
-    }
-    
-    // Getting started
-    if (input.includes('start') || input.includes('begin') || input.includes('next step') || input.includes('assessment')) {
-      return `**Ready to Get Started?** 🎯
-
-Here's the simple process:
-
-1️⃣ **Free Assessment** (15 minutes) - Identify your biggest automation opportunities
-2️⃣ **Strategy Call with Mike** (30 minutes) - Custom solution design
-3️⃣ **Proposal & Timeline** - Clear roadmap with guaranteed ROI
-4️⃣ **Implementation** - We handle everything while you focus on your business
-
-**Next Steps:**
-🎯 Take the assessment (click the button above)
-📞 Call Mike directly: 561-201-4365
-📧 Email: contactautomari@gmail.com
-
-Which option works best for you?`
+**🚀 Next Step to Unlock Full Blueprint**
+Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
     }
 
-    // Web design specific
+    // Business Pain: Email Management Chaos
+    if (input.includes('email') || input.includes('inbox') || input.includes('communication') || input.includes('overwhelmed')) {
+      return `**🎯 Key Pain You Stated**
+• Email chaos eating productivity, important messages lost in noise
+
+**⚡ 3‑Line Solution Sketch**  
+• **Smart Email AI**: Auto‑categorization + priority scoring + template responses
+• **Result**: 70% email handling automated, 3‑hour daily time savings
+• **Proof**: Miami Beach Boutique processed 300% more inquiries with same team
+
+**🚀 Next Step to Unlock Full Blueprint**
+Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
+    }
+
+    // Business Pain: Manual Bookkeeping/Finance
+    if (input.includes('bookkeeping') || input.includes('accounting') || input.includes('finance') || input.includes('invoicing') || input.includes('expenses')) {
+      return `**🎯 Key Pain You Stated**
+• Manual bookkeeping draining time, financial insights always lagging
+
+**⚡ 3‑Line Solution Sketch**
+• **Finance AI Suite**: Auto expense tracking + smart invoicing + real‑time reporting
+• **Result**: 90% manual finance work eliminated, instant cash flow visibility  
+• **Proof**: Restaurant clients save 15 hours/week, catch profit leaks immediately
+
+**🚀 Next Step to Unlock Full Blueprint**
+Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
+    }
+
+    // Business Pain: Scheduling Conflicts
+    if (input.includes('scheduling') || input.includes('appointments') || input.includes('calendar') || input.includes('booking')) {
+      return `**🎯 Key Pain You Stated**
+• Scheduling chaos creating double‑bookings, client frustration
+
+**⚡ 3‑Line Solution Sketch**
+• **Smart Scheduler AI**: Conflict‑free booking + timezone magic + auto‑reminders
+• **Result**: Zero double‑bookings, 95% show‑up rate, stress‑free coordination
+• **Proof**: Rodriguez Construction eliminated all booking conflicts, seamless project flow
+
+**🚀 Next Step to Unlock Full Blueprint**
+Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
+    }
+
+    // Business Pain: Inventory Management
+    if (input.includes('inventory') || input.includes('stock') || input.includes('supply') || input.includes('waste')) {
+      return `**🎯 Key Pain You Stated**  
+• Inventory guesswork causing stockouts or waste, killing profits
+
+**⚡ 3‑Line Solution Sketch**
+• **Predictive Inventory AI**: Smart reordering + demand forecasting + waste prevention
+• **Result**: 40% waste reduction, never miss sales, optimized cash flow
+• **Proof**: Chen's Restaurant Group saved thousands, zero stockouts in 8 months
+
+**🚀 Next Step to Unlock Full Blueprint**
+Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
+    }
+
+    // Request for Pricing/Costs
+    if (input.includes('price') || input.includes('cost') || input.includes('budget') || input.includes('expensive')) {
+      return `**🎯 Key Pain You Stated**
+• Need ROI clarity before investing in automation
+
+**⚡ 3‑Line Solution Sketch**
+• **Custom ROI Calculator**: Maps your exact pain → automation solution → guaranteed savings
+• **Result**: Typical clients see 300‑500% ROI within 6 months
+• **Proof**: Average client saves $8,000/month after $15,000 implementation
+
+**🚀 Next Step to Unlock Full Blueprint**
+**Pricing requires fit analysis** → [**Book Strategy Call**](tel:561-201-4365)`
+    }
+
+    // Request for Technical Details/Code
+    if (input.includes('how it works') || input.includes('technical') || input.includes('code') || input.includes('architecture')) {
+      return `**🎯 Key Pain You Stated**
+• Need technical confidence before moving forward
+
+**⚡ 3‑Line Solution Sketch**
+• **Enterprise‑Grade Stack**: Next.js + AI APIs + cloud infrastructure + security
+• **Result**: Bank‑level security, 99.9% uptime, scales with your growth
+• **That requires a discovery session to ensure fit.**
+
+**🚀 Next Step to Unlock Full Blueprint**
+Technical deep‑dive → [**Book Strategy Call**](tel:561-201-4365)`
+    }
+
+    // Lead Generation/Marketing Pain
+    if (input.includes('leads') || input.includes('marketing') || input.includes('sales') || input.includes('customers')) {
+      return `**🎯 Key Pain You Stated**
+• Lead generation inconsistent, manual follow‑up missing opportunities
+
+**⚡ 3‑Line Solution Sketch**
+• **Lead AI Engine**: Smart scoring + automated nurturing + conversion optimization
+• **Result**: 3x qualified leads, 50% better conversion, zero manual follow‑up
+• **Proof**: Sunshine Marketing increased qualified leads 300% in 4 months
+
+**🚀 Next Step to Unlock Full Blueprint**
+Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
+    }
+
+    // HR/Employee Management
+    if (input.includes('hr') || input.includes('employees') || input.includes('onboarding') || input.includes('hiring')) {
+      return `**🎯 Key Pain You Stated**
+• HR processes manual, employee onboarding chaotic and slow
+
+**⚡ 3‑Line Solution Sketch**
+• **HR Automation Suite**: Smart onboarding + document workflow + progress tracking
+• **Result**: 75% faster onboarding, 90% compliance, delighted new hires
+• **Proof**: Clients cut onboarding time 48%, boosted retention 25%
+
+**🚀 Next Step to Unlock Full Blueprint**
+Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
+    }
+
+    // Data/Analytics/Reporting Pain
+    if (input.includes('data') || input.includes('reporting') || input.includes('analytics') || input.includes('insights')) {
+      return `**🎯 Key Pain You Stated**
+• Drowning in data but starving for actionable insights
+
+**⚡ 3‑Line Solution Sketch**
+• **Intelligence Dashboard**: Real‑time KPIs + predictive alerts + automated reports
+• **Result**: Instant business intelligence, spot trends weeks early, data‑driven decisions
+• **Proof**: Clients make 40% faster decisions, catch problems before they cost money
+
+**🚀 Next Step to Unlock Full Blueprint**
+Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
+    }
+
+    // Social Media Management
+    if (input.includes('social media') || input.includes('content') || input.includes('posting') || input.includes('engagement')) {
+      return `**🎯 Key Pain You Stated**
+• Social media eating time, inconsistent posting, poor engagement
+
+**⚡ 3‑Line Solution Sketch**
+• **Social AI Manager**: Smart scheduling + engagement monitoring + trend analysis
+• **Result**: 80% time savings, 3x engagement, brand reputation on autopilot
+• **Proof**: Clients boost social engagement 200% while cutting management time 70%
+
+**🚀 Next Step to Unlock Full Blueprint**
+Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
+    }
+
+    // Cybersecurity Concerns
+    if (input.includes('security') || input.includes('cyber') || input.includes('hack') || input.includes('protection')) {
+      return `**🎯 Key Pain You Stated**
+• Business vulnerable to cyber threats, reactive security approach
+
+**⚡ 3‑Line Solution Sketch**
+• **AI Security Shield**: Proactive threat detection + automated response + compliance monitoring
+• **Result**: 99.9% threat prevention, instant response, bulletproof compliance
+• **Proof**: Zero successful attacks across 50+ protected businesses
+
+**🚀 Next Step to Unlock Full Blueprint**
+Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
+    }
+
+    // General Business Automation Inquiry
+    if (input.includes('automate') || input.includes('automation') || input.includes('ai') || input.includes('efficient')) {
+      return `**🎯 Key Pain You Stated**
+• Business running on manual processes, growth hitting bottlenecks
+
+**⚡ 3‑Line Solution Sketch**
+• **Complete Business AI**: End‑to‑end automation across every department
+• **Result**: 60‑80% manual work eliminated, 3x growth capacity with same team
+• **Proof**: Average client saves 500+ hours weekly, scales 300% without hiring
+
+**🚀 Next Step to Unlock Full Blueprint**
+Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
+    }
+
+    // Company/About Automari
+    if (input.includes('about') || input.includes('automari') || input.includes('company') || input.includes('who are you')) {
+      return `**🎯 Key Pain You Stated**  
+• Need confidence in Automari's track record and expertise
+
+**⚡ 3‑Line Solution Sketch**
+• **America's AI Automation Leader**: 50+ businesses transformed, 99% satisfaction rate
+• **Result**: Proven methodology, Fortune‑500 level solutions for growing businesses
+• **Proof**: 500+ hours saved weekly across clients, $2M+ in efficiency gains
+
+**🚀 Next Step to Unlock Full Blueprint**
+Meet the team → [**Book Strategy Call**](tel:561-201-4365)`
+    }
+
+    // Web Design Services
     if (input.includes('web design') || input.includes('website') || input.includes('brand') || input.includes('development')) {
-      return `**Enterprise Web Design & Brand Development** 🎨
+      return `**🎯 Key Pain You Stated**
+• Need powerful web presence that actually drives business growth
 
-Our flagship service that creates powerful brand presence and growth engines:
+**⚡ 3‑Line Solution Sketch**
+• **Enterprise Brand Suite**: Custom UI/UX + conversion optimization + AI integrations
+• **Result**: Professional brand presence, 5x conversion rates, automated lead capture
+• **Advanced service—requires larger capital allocation**
 
-🎯 **Custom UI/UX Architecture** - Pixel-perfect layouts, responsive across every device
-🎨 **Brand Identity Suite** - Logos, color systems, typography & voice crafted for conversion
-⚡ **Scalable CMS & API Integrations** - Lightning-fast Next.js front-end with e-commerce, CRM, and AI chatbot embeds
-🚀 **SEO & CRO Framework** - Schema, core-web-vitals tuning, and funnel tracking built in from day one
-
-*Note: This is an advanced service requiring larger capital allocation due to the comprehensive nature of the transformation.
-
-Ready to discuss your vision? Call Mike at 561-201-4365!`
+**🚀 Next Step to Unlock Full Blueprint**
+Web strategy discussion → [**Book Strategy Call**](tel:561-201-4365)`
     }
-    
-    // Default response for unrecognized queries
-    return `I'd love to help you with that! Here are some things I can tell you about:
 
-🔹 **Our Services** - AI automation solutions across all business areas
-🔹 **Pricing** - Custom quotes and free assessment  
-🔹 **Results** - Real case studies and success stories
-🔹 **Getting Started** - Next steps and consultation process
-🔹 **Contact Info** - How to reach Mike and the team
-🔹 **Web Design** - Our premium brand development service
+    // Off-topic or Unclear Input
+    return `**🎯 Let's Focus on Your Business**
+I'm designed to diagnose automation opportunities and build solutions that drive real ROI.
 
-You can also call Mike directly at **561-201-4365** for immediate assistance with any specific questions about your business automation needs.
+**⚡ Common Pain Points I Solve:**
+• Customer support overwhelm • Email chaos • Manual bookkeeping
+• Scheduling conflicts • Inventory guesswork • Lead generation gaps
 
-What would you like to explore?`
+**🚀 Next Step to Unlock Your Solution**
+What's your biggest operational bottleneck? Or jump straight to → [**Strategy Call**](tel:561-201-4365)`
   }
 
   const scrollToBottom = () => {
@@ -445,7 +518,7 @@ What would you like to explore?`
 
     const userMessage = {
       id: Date.now(),
-      sender: "You",
+      sender: "You", 
       text: inputMessage.trim(),
       timestamp: new Date()
     }
@@ -456,28 +529,28 @@ What would you like to explore?`
     setIsLoading(true)
 
     try {
-      // REMOVED: External API call - using local knowledge base instead
-      const localResponse = generateLocalResponse(currentInput)
+      // AUTOMARI Pro Response Generation
+      const proResponse = automariProResponse(currentInput)
       
       const aiMessage = {
         id: Date.now() + 1,
         sender: "AI",
-        text: localResponse,
+        text: proResponse,
         timestamp: new Date()
       }
 
-      // Add a small delay for more natural feel
+      // Professional response timing
       setTimeout(() => {
         setMessages(prev => [...prev, aiMessage])
         setIsLoading(false)
-      }, 800)
+      }, 1200)
 
     } catch (error) {
-      console.error("Chatbot error:", error)
+      console.error("AUTOMARI Pro error:", error)
       const errorMessage = {
         id: Date.now() + 1,
         sender: "AI",
-        text: "I'm having a small technical hiccup, but I'm still here to help! For immediate assistance, please call Mike directly at 561-201-4365. You can also try asking your question again.",
+        text: "**Technical hiccup on my end** – but I'm still here to solve your automation challenges!\n\nFor immediate strategy discussion → [**Call Mike: 561-201-4365**](tel:561-201-4365)",
         timestamp: new Date()
       }
       setMessages(prev => [...prev, errorMessage])
@@ -492,44 +565,40 @@ What would you like to explore?`
     }
   }
 
-  // Quick action buttons for common questions
+  // Professional Quick Actions for Business Leaders
   const quickActions = [
-    { text: "📋 View Services", query: "What services do you offer?" },
-    { text: "💰 Pricing Info", query: "How much does automation cost?" },
-    { text: "📞 Contact Mike", query: "How can I contact you?" },
-    { text: "🚀 Get Started", query: "How do I get started?" }
+    { text: "🎯 Customer Support Pain", query: "We're drowning in customer support tickets" },
+    { text: "📧 Email Overwhelm", query: "Email management is killing our productivity" }, 
+    { text: "💰 Show Me ROI", query: "What's the return on investment for automation?" },
+    { text: "📞 Strategy Call", query: "I want to book a strategy call with Mike" }
   ]
 
   const handleQuickAction = (query) => {
-    setInputMessage(query)
-    // Automatically send the message
+    const syntheticUserMessage = {
+      id: Date.now(),
+      sender: "You",
+      text: query,
+      timestamp: new Date()
+    }
+    setMessages(prev => [...prev, syntheticUserMessage])
+    setIsLoading(true)
+    
     setTimeout(() => {
-      const syntheticUserMessage = {
-        id: Date.now(),
-        sender: "You",
-        text: query,
+      const response = automariProResponse(query)
+      const aiMessage = {
+        id: Date.now() + 1,
+        sender: "AI",
+        text: response,
         timestamp: new Date()
       }
-      setMessages(prev => [...prev, syntheticUserMessage])
-      setIsLoading(true)
-      
-      setTimeout(() => {
-        const response = generateLocalResponse(query)
-        const aiMessage = {
-          id: Date.now() + 1,
-          sender: "AI", 
-          text: response,
-          timestamp: new Date()
-        }
-        setMessages(prev => [...prev, aiMessage])
-        setIsLoading(false)
-      }, 800)
-    }, 100)
+      setMessages(prev => [...prev, aiMessage])
+      setIsLoading(false)
+    }, 1200)
   }
 
   return (
     <>
-      {/* Floating Chat Button */}
+      {/* Premium Floating Chat Button */}
       <motion.div
         className="fixed bottom-6 right-6 z-50"
         initial={{ scale: 0 }}
@@ -538,7 +607,7 @@ What would you like to explore?`
       >
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-16 h-16 bg-gradient-to-r from-red-600 to-blue-600 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center text-white relative overflow-hidden"
+          className="w-16 h-16 bg-gradient-to-r from-red-600 via-red-500 to-blue-600 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center text-white relative overflow-hidden group"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
@@ -555,7 +624,7 @@ What would you like to explore?`
               </motion.div>
             ) : (
               <motion.div
-                key="bot"
+                key="consultant"
                 initial={{ rotate: 180, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
                 exit={{ rotate: -180, opacity: 0 }}
@@ -566,31 +635,36 @@ What would you like to explore?`
             )}
           </AnimatePresence>
           
-          {/* Pulse animation */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-blue-600 animate-ping opacity-20" />
+          {/* Premium pulse effect */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-blue-600 animate-pulse opacity-30" />
+          
+          {/* Professional badge */}
+          <div className="absolute -top-1 -right-1 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-xs font-bold text-black">
+            PRO
+          </div>
         </motion.button>
       </motion.div>
 
-      {/* Chat Window */}
+      {/* Professional Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-24 right-6 w-96 h-[32rem] bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl border border-slate-600/50 z-50 flex flex-col overflow-hidden"
+            className="fixed bottom-24 right-6 w-96 h-[32rem] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl shadow-2xl border border-slate-600/50 z-50 flex flex-col overflow-hidden"
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
-            {/* Chat Header */}
-            <div className="bg-gradient-to-r from-red-600/20 to-blue-600/20 backdrop-blur-sm p-4 border-b border-slate-600/50">
+            {/* Professional Header */}
+            <div className="bg-gradient-to-r from-red-600/20 via-red-500/10 to-blue-600/20 backdrop-blur-sm p-4 border-b border-slate-600/50">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-blue-500 rounded-full flex items-center justify-center">
                     <Bot className="h-5 w-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">Automari Assistant</h3>
-                    <p className="text-xs text-slate-400">Online • AI-Powered</p>
+                    <h3 className="font-semibold text-white">AUTOMARI Pro</h3>
+                    <p className="text-xs text-slate-300">AI‑Automation Strategist</p>
                   </div>
                 </div>
                 <button
@@ -618,26 +692,36 @@ What would you like to explore?`
                         : "bg-slate-700/50 text-slate-100 rounded-bl-md"
                     }`}
                   >
-                    <p className="text-sm leading-relaxed whitespace-pre-line">{message.text}</p>
-                    <p className="text-xs opacity-70 mt-1">
+                    <div className="text-sm leading-relaxed whitespace-pre-line">
+                      {message.text.split('\n').map((line, i) => {
+                        if (line.startsWith('**') && line.endsWith('**')) {
+                          return <div key={i} className="font-bold text-yellow-400 mb-1">{line.slice(2, -2)}</div>
+                        }
+                        if (line.startsWith('• ')) {
+                          return <div key={i} className="ml-2 mb-1">{line}</div>
+                        }
+                        return <div key={i} className="mb-1">{line}</div>
+                      })}
+                    </div>
+                    <p className="text-xs opacity-70 mt-2">
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
                   </div>
                 </motion.div>
               ))}
               
-              {/* Quick Actions (show after initial message) */}
+              {/* Professional Quick Actions */}
               {messages.length === 1 && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="grid grid-cols-2 gap-2 mt-4"
+                  className="grid grid-cols-1 gap-2 mt-4"
                 >
                   {quickActions.map((action, index) => (
                     <button
                       key={index}
                       onClick={() => handleQuickAction(action.query)}
-                      className="text-xs p-2 bg-slate-600/30 hover:bg-slate-600/50 rounded-lg text-slate-300 hover:text-white transition-all"
+                      className="text-xs p-3 bg-slate-600/30 hover:bg-slate-600/50 rounded-lg text-slate-300 hover:text-white transition-all text-left border border-slate-600/20"
                     >
                       {action.text}
                     </button>
@@ -654,11 +738,11 @@ What would you like to explore?`
                   <div className="bg-slate-700/50 text-slate-100 rounded-2xl rounded-bl-md p-3">
                     <div className="flex items-center space-x-2">
                       <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" />
+                        <div className="w-2 h-2 bg-red-400 rounded-full animate-bounce" />
                         <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }} />
-                        <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
+                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
                       </div>
-                      <span className="text-xs text-slate-400">AI is thinking...</span>
+                      <span className="text-xs text-slate-400">Analyzing your business...</span>
                     </div>
                   </div>
                 </motion.div>
@@ -666,7 +750,7 @@ What would you like to explore?`
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
+            {/* Professional Input */}
             <div className="p-4 border-t border-slate-600/50 bg-slate-800/50">
               <div className="flex items-center space-x-2">
                 <input
@@ -674,7 +758,7 @@ What would you like to explore?`
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Ask about our AI services..."
+                  placeholder="Describe your biggest business bottleneck..."
                   className="flex-1 bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-red-500/50 focus:ring-1 focus:ring-red-500/20 transition-all"
                   disabled={isLoading}
                 />
@@ -687,7 +771,7 @@ What would you like to explore?`
                 </button>
               </div>
               <p className="text-xs text-slate-500 mt-2 text-center">
-                Press Enter to send • Powered by Automari AI
+                Elite AI‑Automation Strategy • Call 561-201-4365
               </p>
             </div>
           </motion.div>
@@ -1378,8 +1462,8 @@ export default function AutomariWebsite() {
         </div>
       </footer>
 
-      {/* Enhanced Chatbot with Knowledge Base */}
-      <Chatbot />
+      {/* AUTOMARI Pro Chatbot */}
+      <AutomariProChatbot />
     </div>
   )
 }
