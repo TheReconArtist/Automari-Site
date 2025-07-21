@@ -34,6 +34,20 @@ import { Input } from "@/components/ui/input"
 const aiAgents = [
   {
     id: 1,
+    title: "Enterprise Web Design & Brand Development",
+    icon: Palette,
+    description:
+      "End-to-end site creation that forges a powerful brand presence and growth engine. *Advanced service—requires larger capital allocation.",
+    features: [
+      "Custom UI/UX Architecture – pixel‑perfect layouts, responsive across every device",
+      "Brand Identity Suite – logos, color system, typography & voice crafted for conversion", 
+      "Scalable CMS & API Integrations – lightning‑fast front‑end (Next.js) plus e‑commerce, CRM, and AI chat‑bot embeds",
+      "SEO & CRO Framework – schema, core‑web‑vitals tuning, and funnel tracking baked in from day one"
+    ],
+    color: "from-purple-700 to-purple-900",
+  },
+  {
+    id: 2,
     title: "Customer Support Automation",
     icon: MessageSquare,
     description:
@@ -42,7 +56,7 @@ const aiAgents = [
     color: "from-red-600 to-red-800",
   },
   {
-    id: 2,
+    id: 3,
     title: "Email Management & Response",
     icon: Mail,
     description:
@@ -51,7 +65,7 @@ const aiAgents = [
     color: "from-blue-600 to-blue-800",
   },
   {
-    id: 3,
+    id: 4,
     title: "Appointment Scheduling & Calendar",
     icon: Calendar,
     description:
@@ -60,7 +74,7 @@ const aiAgents = [
     color: "from-slate-600 to-slate-800",
   },
   {
-    id: 4,
+    id: 5,
     title: "Financial & Accounting Automation",
     icon: Calculator,
     description:
@@ -117,6 +131,20 @@ const aiAgents = [
       "Proactive threat detection, automated security responses, compliance monitoring, and risk assessment.",
     features: ["Threat Detection", "Automated Response", "Compliance Monitoring", "Risk Assessment"],
     color: "from-red-900 to-red-950",
+  },
+  {
+    id: 11,
+    title: "Enterprise Web Design & Brand Development",
+    icon: Palette,
+    description:
+      "End-to-end site creation that forges a powerful brand presence and growth engine. *Advanced service—requires larger capital allocation.",
+    features: [
+      "Custom UI/UX Architecture – pixel‑perfect layouts, responsive across every device",
+      "Brand Identity Suite – logos, color system, typography & voice crafted for conversion", 
+      "Scalable CMS & API Integrations – lightning‑fast front‑end (Next.js) plus e‑commerce, CRM, and AI chat‑bot embeds",
+      "SEO & CRO Framework – schema, core‑web‑vitals tuning, and funnel tracking baked in from day one"
+    ],
+    color: "from-purple-700 to-purple-900",
   },
 ]
 
