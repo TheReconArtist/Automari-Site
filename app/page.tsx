@@ -264,7 +264,7 @@ const surveyQuestions = [
   },
 ]
 
-// AUTOMARI Pro - Elite AI Automation Consultant Chatbot
+// AUTOMARI Pro - AI-Powered Automation Consultant Chatbot
 function AutomariProChatbot() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState([
@@ -277,233 +277,8 @@ function AutomariProChatbot() {
   ])
   const [inputMessage, setInputMessage] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
   const messagesEndRef = useRef(null)
-
-  // AUTOMARI Pro Knowledge Base - Professional Consultant Responses
-  const automariProResponse = (userInput) => {
-    const input = userInput.toLowerCase()
-    
-    // Business Pain: Customer Support Overwhelm
-    if (input.includes('customer support') || input.includes('customer service') || input.includes('tickets') || input.includes('response time')) {
-      return `**🎯 Key Pain You Stated**
-• Drowning in customer support tickets, slow response times crushing satisfaction
-
-**⚡ 3‑Line Solution Sketch**
-• **AI Support Agent**: 24/7 intelligent routing + sentiment analysis + auto‑responses
-• **Result**: 80% ticket auto‑resolution, 5‑minute avg response (vs hours)
-• **Proof**: Thompson Legal cut response time 90%, boosted client satisfaction 40%
-
-**🚀 Next Step to Unlock Full Blueprint**
-Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
-    }
-
-    // Business Pain: Email Management Chaos
-    if (input.includes('email') || input.includes('inbox') || input.includes('communication') || input.includes('overwhelmed')) {
-      return `**🎯 Key Pain You Stated**
-• Email chaos eating productivity, important messages lost in noise
-
-**⚡ 3‑Line Solution Sketch**  
-• **Smart Email AI**: Auto‑categorization + priority scoring + template responses
-• **Result**: 70% email handling automated, 3‑hour daily time savings
-• **Proof**: Miami Beach Boutique processed 300% more inquiries with same team
-
-**🚀 Next Step to Unlock Full Blueprint**
-Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
-    }
-
-    // Business Pain: Manual Bookkeeping/Finance
-    if (input.includes('bookkeeping') || input.includes('accounting') || input.includes('finance') || input.includes('invoicing') || input.includes('expenses')) {
-      return `**🎯 Key Pain You Stated**
-• Manual bookkeeping draining time, financial insights always lagging
-
-**⚡ 3‑Line Solution Sketch**
-• **Finance AI Suite**: Auto expense tracking + smart invoicing + real‑time reporting
-• **Result**: 90% manual finance work eliminated, instant cash flow visibility  
-• **Proof**: Restaurant clients save 15 hours/week, catch profit leaks immediately
-
-**🚀 Next Step to Unlock Full Blueprint**
-Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
-    }
-
-    // Business Pain: Scheduling Conflicts
-    if (input.includes('scheduling') || input.includes('appointments') || input.includes('calendar') || input.includes('booking')) {
-      return `**🎯 Key Pain You Stated**
-• Scheduling chaos creating double‑bookings, client frustration
-
-**⚡ 3‑Line Solution Sketch**
-• **Smart Scheduler AI**: Conflict‑free booking + timezone magic + auto‑reminders
-• **Result**: Zero double‑bookings, 95% show‑up rate, stress‑free coordination
-• **Proof**: Rodriguez Construction eliminated all booking conflicts, seamless project flow
-
-**🚀 Next Step to Unlock Full Blueprint**
-Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
-    }
-
-    // Business Pain: Inventory Management
-    if (input.includes('inventory') || input.includes('stock') || input.includes('supply') || input.includes('waste')) {
-      return `**🎯 Key Pain You Stated**  
-• Inventory guesswork causing stockouts or waste, killing profits
-
-**⚡ 3‑Line Solution Sketch**
-• **Predictive Inventory AI**: Smart reordering + demand forecasting + waste prevention
-• **Result**: 40% waste reduction, never miss sales, optimized cash flow
-• **Proof**: Chen's Restaurant Group saved thousands, zero stockouts in 8 months
-
-**🚀 Next Step to Unlock Full Blueprint**
-Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
-    }
-
-    // Request for Pricing/Costs
-    if (input.includes('price') || input.includes('cost') || input.includes('budget') || input.includes('expensive')) {
-      return `**🎯 Key Pain You Stated**
-• Need ROI clarity before investing in automation
-
-**⚡ 3‑Line Solution Sketch**
-• **Custom ROI Calculator**: Maps your exact pain → automation solution → guaranteed savings
-• **Result**: Typical clients see 300‑500% ROI within 6 months
-• **Proof**: Average client saves $8,000/month after $15,000 implementation
-
-**🚀 Next Step to Unlock Full Blueprint**
-**Pricing requires fit analysis** → [**Book Strategy Call**](tel:561-201-4365)`
-    }
-
-    // Request for Technical Details/Code
-    if (input.includes('how it works') || input.includes('technical') || input.includes('code') || input.includes('architecture')) {
-      return `**🎯 Key Pain You Stated**
-• Need technical confidence before moving forward
-
-**⚡ 3‑Line Solution Sketch**
-• **Enterprise‑Grade Stack**: Next.js + AI APIs + cloud infrastructure + security
-• **Result**: Bank‑level security, 99.9% uptime, scales with your growth
-• **That requires a discovery session to ensure fit.**
-
-**🚀 Next Step to Unlock Full Blueprint**
-Technical deep‑dive → [**Book Strategy Call**](tel:561-201-4365)`
-    }
-
-    // Lead Generation/Marketing Pain
-    if (input.includes('leads') || input.includes('marketing') || input.includes('sales') || input.includes('customers')) {
-      return `**🎯 Key Pain You Stated**
-• Lead generation inconsistent, manual follow‑up missing opportunities
-
-**⚡ 3‑Line Solution Sketch**
-• **Lead AI Engine**: Smart scoring + automated nurturing + conversion optimization
-• **Result**: 3x qualified leads, 50% better conversion, zero manual follow‑up
-• **Proof**: Sunshine Marketing increased qualified leads 300% in 4 months
-
-**🚀 Next Step to Unlock Full Blueprint**
-Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
-    }
-
-    // HR/Employee Management
-    if (input.includes('hr') || input.includes('employees') || input.includes('onboarding') || input.includes('hiring')) {
-      return `**🎯 Key Pain You Stated**
-• HR processes manual, employee onboarding chaotic and slow
-
-**⚡ 3‑Line Solution Sketch**
-• **HR Automation Suite**: Smart onboarding + document workflow + progress tracking
-• **Result**: 75% faster onboarding, 90% compliance, delighted new hires
-• **Proof**: Clients cut onboarding time 48%, boosted retention 25%
-
-**🚀 Next Step to Unlock Full Blueprint**
-Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
-    }
-
-    // Data/Analytics/Reporting Pain
-    if (input.includes('data') || input.includes('reporting') || input.includes('analytics') || input.includes('insights')) {
-      return `**🎯 Key Pain You Stated**
-• Drowning in data but starving for actionable insights
-
-**⚡ 3‑Line Solution Sketch**
-• **Intelligence Dashboard**: Real‑time KPIs + predictive alerts + automated reports
-• **Result**: Instant business intelligence, spot trends weeks early, data‑driven decisions
-• **Proof**: Clients make 40% faster decisions, catch problems before they cost money
-
-**🚀 Next Step to Unlock Full Blueprint**
-Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
-    }
-
-    // Social Media Management
-    if (input.includes('social media') || input.includes('content') || input.includes('posting') || input.includes('engagement')) {
-      return `**🎯 Key Pain You Stated**
-• Social media eating time, inconsistent posting, poor engagement
-
-**⚡ 3‑Line Solution Sketch**
-• **Social AI Manager**: Smart scheduling + engagement monitoring + trend analysis
-• **Result**: 80% time savings, 3x engagement, brand reputation on autopilot
-• **Proof**: Clients boost social engagement 200% while cutting management time 70%
-
-**🚀 Next Step to Unlock Full Blueprint**
-Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
-    }
-
-    // Cybersecurity Concerns
-    if (input.includes('security') || input.includes('cyber') || input.includes('hack') || input.includes('protection')) {
-      return `**🎯 Key Pain You Stated**
-• Business vulnerable to cyber threats, reactive security approach
-
-**⚡ 3‑Line Solution Sketch**
-• **AI Security Shield**: Proactive threat detection + automated response + compliance monitoring
-• **Result**: 99.9% threat prevention, instant response, bulletproof compliance
-• **Proof**: Zero successful attacks across 50+ protected businesses
-
-**🚀 Next Step to Unlock Full Blueprint**
-Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
-    }
-
-    // General Business Automation Inquiry
-    if (input.includes('automate') || input.includes('automation') || input.includes('ai') || input.includes('efficient')) {
-      return `**🎯 Key Pain You Stated**
-• Business running on manual processes, growth hitting bottlenecks
-
-**⚡ 3‑Line Solution Sketch**
-• **Complete Business AI**: End‑to‑end automation across every department
-• **Result**: 60‑80% manual work eliminated, 3x growth capacity with same team
-• **Proof**: Average client saves 500+ hours weekly, scales 300% without hiring
-
-**🚀 Next Step to Unlock Full Blueprint**
-Book your **Strategy Session** → [**Schedule with Mike**](tel:561-201-4365)`
-    }
-
-    // Company/About Automari
-    if (input.includes('about') || input.includes('automari') || input.includes('company') || input.includes('who are you')) {
-      return `**🎯 Key Pain You Stated**  
-• Need confidence in Automari's track record and expertise
-
-**⚡ 3‑Line Solution Sketch**
-• **America's AI Automation Leader**: 50+ businesses transformed, 99% satisfaction rate
-• **Result**: Proven methodology, Fortune‑500 level solutions for growing businesses
-• **Proof**: 500+ hours saved weekly across clients, $2M+ in efficiency gains
-
-**🚀 Next Step to Unlock Full Blueprint**
-Meet the team → [**Book Strategy Call**](tel:561-201-4365)`
-    }
-
-    // Web Design Services
-    if (input.includes('web design') || input.includes('website') || input.includes('brand') || input.includes('development')) {
-      return `**🎯 Key Pain You Stated**
-• Need powerful web presence that actually drives business growth
-
-**⚡ 3‑Line Solution Sketch**
-• **Enterprise Brand Suite**: Custom UI/UX + conversion optimization + AI integrations
-• **Result**: Professional brand presence, 5x conversion rates, automated lead capture
-• **Advanced service—requires larger capital allocation**
-
-**🚀 Next Step to Unlock Full Blueprint**
-Web strategy discussion → [**Book Strategy Call**](tel:561-201-4365)`
-    }
-
-    // Off-topic or Unclear Input
-    return `**🎯 Let's Focus on Your Business**
-I'm designed to diagnose automation opportunities and build solutions that drive real ROI.
-
-**⚡ Common Pain Points I Solve:**
-• Customer support overwhelm • Email chaos • Manual bookkeeping
-• Scheduling conflicts • Inventory guesswork • Lead generation gaps
-
-**🚀 Next Step to Unlock Your Solution**
-What's your biggest operational bottleneck? Or jump straight to → [**Strategy Call**](tel:561-201-4365)`
-  }
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -527,34 +302,62 @@ What's your biggest operational bottleneck? Or jump straight to → [**Strategy 
     const currentInput = inputMessage.trim()
     setInputMessage("")
     setIsLoading(true)
+    setError(null)
 
     try {
-      // AUTOMARI Pro Response Generation
-      const proResponse = automariProResponse(currentInput)
-      
+      // Get conversation history (last 10 messages for context)
+      const conversationHistory = messages.slice(-10)
+
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: currentInput,
+          conversationHistory: conversationHistory
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      const data = await response.json()
+
+      if (data.error && data.error !== 'fallback_used') {
+        throw new Error(data.error)
+      }
+
       const aiMessage = {
         id: Date.now() + 1,
         sender: "AI",
-        text: proResponse,
+        text: data.response,
         timestamp: new Date()
       }
 
-      // Professional response timing
+      // Simulate realistic response timing
       setTimeout(() => {
         setMessages(prev => [...prev, aiMessage])
         setIsLoading(false)
       }, 1200)
 
     } catch (error) {
-      console.error("AUTOMARI Pro error:", error)
+      console.error("Chat API error:", error)
+      setError(error.message)
+      
+      // Fallback error message
       const errorMessage = {
         id: Date.now() + 1,
         sender: "AI",
-        text: "**Technical hiccup on my end** – but I'm still here to solve your automation challenges!\n\nFor immediate strategy discussion → [**Call Mike: 561-201-4365**](tel:561-201-4365)",
+        text: "**🎯 Technical Issue Detected**\n\nI'm experiencing a brief connection issue, but I'm still here to help solve your automation challenges!\n\n**🚀 Direct Solution**\nFor immediate strategy discussion → [**Call Mike: 561-201-4365**](tel:561-201-4365)\n\nOr try your message again in a moment.",
         timestamp: new Date()
       }
-      setMessages(prev => [...prev, errorMessage])
-      setIsLoading(false)
+      
+      setTimeout(() => {
+        setMessages(prev => [...prev, errorMessage])
+        setIsLoading(false)
+      }, 1000)
     }
   }
 
@@ -567,13 +370,15 @@ What's your biggest operational bottleneck? Or jump straight to → [**Strategy 
 
   // Professional Quick Actions for Business Leaders
   const quickActions = [
-    { text: "🎯 Customer Support Pain", query: "We're drowning in customer support tickets" },
-    { text: "📧 Email Overwhelm", query: "Email management is killing our productivity" }, 
-    { text: "💰 Show Me ROI", query: "What's the return on investment for automation?" },
-    { text: "📞 Strategy Call", query: "I want to book a strategy call with Mike" }
+    { text: "🎯 Customer Support Pain", query: "We're drowning in customer support tickets and response times are too slow" },
+    { text: "📧 Email Overwhelm", query: "Email management is killing our productivity and we're missing important messages" }, 
+    { text: "💰 Show Me ROI", query: "What's the return on investment for automation and how much can we save?" },
+    { text: "📞 Strategy Call", query: "I want to book a strategy call with Mike to discuss our automation needs" }
   ]
 
   const handleQuickAction = (query) => {
+    if (isLoading) return
+    
     const syntheticUserMessage = {
       id: Date.now(),
       sender: "You",
@@ -581,19 +386,97 @@ What's your biggest operational bottleneck? Or jump straight to → [**Strategy 
       timestamp: new Date()
     }
     setMessages(prev => [...prev, syntheticUserMessage])
-    setIsLoading(true)
+    setInputMessage("")
     
+    // Process the quick action as a regular message
     setTimeout(() => {
-      const response = automariProResponse(query)
+      sendMessageWithText(query)
+    }, 100)
+  }
+
+  const sendMessageWithText = async (messageText) => {
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const conversationHistory = messages.slice(-10)
+
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: messageText,
+          conversationHistory: conversationHistory
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      const data = await response.json()
+
       const aiMessage = {
         id: Date.now() + 1,
         sender: "AI",
-        text: response,
+        text: data.response,
         timestamp: new Date()
       }
-      setMessages(prev => [...prev, aiMessage])
-      setIsLoading(false)
-    }, 1200)
+
+      setTimeout(() => {
+        setMessages(prev => [...prev, aiMessage])
+        setIsLoading(false)
+      }, 1200)
+
+    } catch (error) {
+      console.error("Chat API error:", error)
+      setError(error.message)
+      
+      const errorMessage = {
+        id: Date.now() + 1,
+        sender: "AI",
+        text: "**🎯 Connection Issue**\n\nBrief technical hiccup! For immediate assistance → [**Call Mike: 561-201-4365**](tel:561-201-4365)",
+        timestamp: new Date()
+      }
+      
+      setTimeout(() => {
+        setMessages(prev => [...prev, errorMessage])
+        setIsLoading(false)
+      }, 1000)
+    }
+  }
+
+  // Format message text with markdown-like styling
+  const formatMessage = (text) => {
+    return text.split('\n').map((line, i) => {
+      if (line.startsWith('**') && line.endsWith('**')) {
+        return <div key={i} className="font-bold text-yellow-400 mb-1">{line.slice(2, -2)}</div>
+      }
+      if (line.startsWith('• ')) {
+        return <div key={i} className="ml-2 mb-1">{line}</div>
+      }
+      // Handle links
+      if (line.includes('[**') && line.includes('**]')) {
+        const linkRegex = /\[(\*\*.*?\*\*)\]\((.*?)\)/g
+        const parts = line.split(linkRegex)
+        return (
+          <div key={i} className="mb-1">
+            {parts.map((part, idx) => {
+              if (part.startsWith('**') && part.endsWith('**')) {
+                return <span key={idx} className="font-bold text-blue-400">{part.slice(2, -2)}</span>
+              }
+              if (part.startsWith('tel:') || part.startsWith('mailto:')) {
+                return null // Skip URL parts
+              }
+              return <span key={idx}>{part}</span>
+            })}
+          </div>
+        )
+      }
+      return <div key={i} className="mb-1">{line}</div>
+    })
   }
 
   return (
@@ -640,7 +523,7 @@ What's your biggest operational bottleneck? Or jump straight to → [**Strategy 
           
           {/* Professional badge */}
           <div className="absolute -top-1 -right-1 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-xs font-bold text-black">
-            PRO
+            AI
           </div>
         </motion.button>
       </motion.div>
@@ -692,16 +575,8 @@ What's your biggest operational bottleneck? Or jump straight to → [**Strategy 
                         : "bg-slate-700/50 text-slate-100 rounded-bl-md"
                     }`}
                   >
-                    <div className="text-sm leading-relaxed whitespace-pre-line">
-                      {message.text.split('\n').map((line, i) => {
-                        if (line.startsWith('**') && line.endsWith('**')) {
-                          return <div key={i} className="font-bold text-yellow-400 mb-1">{line.slice(2, -2)}</div>
-                        }
-                        if (line.startsWith('• ')) {
-                          return <div key={i} className="ml-2 mb-1">{line}</div>
-                        }
-                        return <div key={i} className="mb-1">{line}</div>
-                      })}
+                    <div className="text-sm leading-relaxed">
+                      {formatMessage(message.text)}
                     </div>
                     <p className="text-xs opacity-70 mt-2">
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -711,7 +586,7 @@ What's your biggest operational bottleneck? Or jump straight to → [**Strategy 
               ))}
               
               {/* Professional Quick Actions */}
-              {messages.length === 1 && (
+              {messages.length === 1 && !isLoading && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -721,7 +596,8 @@ What's your biggest operational bottleneck? Or jump straight to → [**Strategy 
                     <button
                       key={index}
                       onClick={() => handleQuickAction(action.query)}
-                      className="text-xs p-3 bg-slate-600/30 hover:bg-slate-600/50 rounded-lg text-slate-300 hover:text-white transition-all text-left border border-slate-600/20"
+                      disabled={isLoading}
+                      className="text-xs p-3 bg-slate-600/30 hover:bg-slate-600/50 rounded-lg text-slate-300 hover:text-white transition-all text-left border border-slate-600/20 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {action.text}
                     </button>
@@ -747,6 +623,25 @@ What's your biggest operational bottleneck? Or jump straight to → [**Strategy 
                   </div>
                 </motion.div>
               )}
+
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex justify-center"
+                >
+                  <div className="bg-red-900/30 border border-red-700/50 rounded-lg p-3 text-center">
+                    <p className="text-xs text-red-300">Connection issue detected</p>
+                    <button 
+                      onClick={() => setError(null)}
+                      className="text-xs text-red-400 hover:text-red-300 mt-1"
+                    >
+                      Dismiss
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+              
               <div ref={messagesEndRef} />
             </div>
 
@@ -771,7 +666,7 @@ What's your biggest operational bottleneck? Or jump straight to → [**Strategy 
                 </button>
               </div>
               <p className="text-xs text-slate-500 mt-2 text-center">
-                Elite AI‑Automation Strategy • Call 561-201-4365
+                Powered by AI • Call 561-201-4365 for Strategy
               </p>
             </div>
           </motion.div>
@@ -1462,7 +1357,7 @@ export default function AutomariWebsite() {
         </div>
       </footer>
 
-      {/* AUTOMARI Pro Chatbot */}
+      {/* AI-Powered AUTOMARI Pro Chatbot */}
       <AutomariProChatbot />
     </div>
   )
