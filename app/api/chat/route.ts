@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-})
+// ✅ REMOVED: const openai = new OpenAI({ ... }) - This was causing the build error
 
 export async function POST(request: NextRequest) {
     try {
+        // ✅ FIX: Create OpenAI client INSIDE the function
+        const openai = new OpenAI({
+            apiKey: process.env.OPENAI_API_KEY,
+        })
+
         const { message, conversationHistory } = await request.json()
 
         // Build conversation context
@@ -128,3 +131,6 @@ Try your message again in a moment, or contact Mike for an immediate consultatio
         }, { status: 500 })
     }
 }
+
+// ✅ FIX: Add this to prevent Next.js from trying to execute during build
+export const dynamic = 'force-dynamic'
