@@ -702,10 +702,10 @@ export default function AutomariWebsite() {
 
   const handleSurveySubmit = () => {
     setSurveySubmitted(true)
-    console.log("Survey Data:", surveyData)
+    console.log("Survey Data:", surveyData);
   }
 
-  const currentQuestion = surveyQuestions[surveyStep]
+  const currentQuestion = surveyQuestions[surveyStep];
   const isLastStep = surveyStep === surveyQuestions.length - 1;
 
   return (
