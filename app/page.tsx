@@ -138,49 +138,49 @@ const aiAgents = [
 
 const testimonials = [
   {
-    name: "Sarah Martinez",
-    business: "Miami Beach Boutique",
+    name: "Amanda Lee",
+    business: "South Beach Style",
     location: "Miami Beach, FL",
     rating: 5,
     review:
-      "Mike and the Automari team transformed our customer service completely. Our response time went from hours to minutes, and customer satisfaction increased by 40%. Incredible results!",
-    avatar: "SM",
+      "I used to spend evenings clearing a backlog of DMs and emails. After Automari rolled out its support bot, most shoppers get answers within minutes and our five-star reviews jumped about 40%. There was a short learning curve for my staff, but Automari's team walked us through it and now the system runs on autopilot.",
+    avatar: "AL",
   },
   {
-    name: "Carlos Rodriguez",
-    business: "Rodriguez Construction",
+    name: "Robert Peña",
+    business: "Peña & Sons Contracting",
     location: "Fort Lauderdale, FL",
     rating: 5,
     review:
-      "The scheduling automation agent has been a game-changer. We've eliminated double bookings and our project coordination is seamless. Mike's expertise made the transition effortless.",
-    avatar: "CR",
+      "The scheduling agent wiped out our calendar chaos. Double-booked crews are a thing of the past, and job-site coordination finally feels effortless. Deployment took less than a week, and Automari was refreshingly honest about what would—and wouldn't—work for our workflows.",
+    avatar: "RP",
   },
   {
-    name: "Jennifer Thompson",
-    business: "Thompson Legal Services",
+    name: "Danielle Brooks",
+    business: "Brooks Family Law",
     location: "Boca Raton, FL",
     rating: 5,
     review:
-      "Automari's email management system handles 80% of our client inquiries automatically. It's like having a 24/7 assistant. Our productivity has skyrocketed since working with Mike.",
-    avatar: "JT",
+      "Routine client emails once swallowed half a paralegal's day. Automari's system now drafts roughly 80% of those replies, giving us time back for research and prep. Clients still feel personally attended to, which was my top concern going in.",
+    avatar: "DB",
   },
   {
-    name: "David Chen",
-    business: "Chen's Restaurant Group",
+    name: "Kevin Tran",
+    business: "Tran Hospitality Group",
     location: "West Palm Beach, FL",
     rating: 5,
     review:
-      "The inventory management AI has saved us thousands in waste and prevented stockouts. Mike understood our unique needs and delivered beyond expectations. Highly recommend!",
-    avatar: "DC",
+      "The real-time inventory alerts have already saved us thousands in spoiled produce. We hit one snag connecting the AI to our aging POS, but Automari patched it the same afternoon. The tool has more than paid for itself.",
+    avatar: "KT",
   },
   {
-    name: "Maria Gonzalez",
-    business: "Sunshine Marketing Agency",
+    name: "Elena Morales",
+    business: "BrightWave Marketing",
     location: "Delray Beach, FL",
     rating: 5,
     review:
-      "Working with Automari has been transformative. The lead generation automation increased our qualified leads by 300%. Mike's strategic approach and technical expertise are unmatched.",
-    avatar: "MG",
+      "We didn't just need more leads—we needed better ones. Automari's lead-scoring workflow tripled qualified prospects in two months without increasing ad spend. The concise weekly performance reports are a bonus my team actually reads.",
+    avatar: "EM",
   },
 ]
 
@@ -264,14 +264,14 @@ const surveyQuestions = [
   },
 ]
 
-// AUTOMARI Pro - AI-Powered Automation Consultant Chatbot
-function AutomariProChatbot() {
+// Mari Mari - AI-Powered Automation Consultant Chatbot
+function MariMariChatbot() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState([
     {
       id: 1,
       sender: "AI",
-      text: "👋 **AUTOMARI Pro** here – your AI‑automation strategist.\n\nI diagnose business pain points and design high‑impact automation solutions. What's your biggest operational bottleneck right now?",
+      text: "👋 **Mari Mari** here – your AI‑automation strategist.\n\nI diagnose business pain points and design high‑impact automation solutions. What's your biggest operational bottleneck right now?",
       timestamp: new Date()
     }
   ])
@@ -546,7 +546,7 @@ function AutomariProChatbot() {
                     <Bot className="h-5 w-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">AUTOMARI Pro</h3>
+                    <h3 className="font-semibold text-white">Mari Mari</h3>
                     <p className="text-xs text-slate-300">AI‑Automation Strategist</p>
                   </div>
                 </div>
@@ -1358,8 +1358,8 @@ export default function AutomariWebsite() {
         </div>
       </footer>
 
-      {/* AI-Powered AUTOMARI Pro Chatbot */}
-      <AutomariProChatbot />
+      {/* AI-Powered Mari Mari Chatbot */}
+      <MariMariChatbot />
     </div>
   )
 }
